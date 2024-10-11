@@ -4,7 +4,7 @@ import Space from "./components/Space";
 function App() {
   return (
     <div>
-      <Space>
+      <Space direction="horizontal" size="small" align="end">
         <div className="box"></div>
         <div className="box"></div>
         <div className="box"></div>

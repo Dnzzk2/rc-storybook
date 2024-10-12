@@ -1,7 +1,8 @@
 import classNames from "classnames";
-import React from "react";
+import React, { useMemo } from "react";
 import type { CSSProperties, HTMLAttributes } from "react";
 import "./index.scss";
+import { ConfigContext } from "./ConfigProvider";
 
 export type SizeType = "small" | "middle" | "large" | number | undefined;
 
@@ -16,12 +17,28 @@ export interface SpaceProps extends HTMLAttributes<HTMLDivElement> {
   wrap?: boolean;
 }
 
+const sizeMap = {
+  small: 8,
+  middle: 16,
+  large: 24,
+};
+
+const getNumberSize = (size: SizeType) => {
+  return typeof size === "string" ? sizeMap[size] : size || 0;
+};
+
+/**
+ *
+ * type SizeType = "small" | "middle" | "large" | number | undefined;
+ */
 const Space: React.FC<SpaceProps> = (props) => {
+  const { space } = React.useContext(ConfigContext);
+
   const {
     className,
     style,
     direction = "horizontal",
-    size = "small",
+    size = space?.size || "small",
     align,
     split,
     wrap,
@@ -46,14 +63,36 @@ const Space: React.FC<SpaceProps> = (props) => {
     const key = (node && node.key) || `space-item-${i}`;
 
     return (
-      <div className="space-item" key={key}>
-        {node}
-      </div>
+      <>
+        <div className="space-item" key={key}>
+          {node}
+        </div>
+        {i < childNodes.length - 1 && split && (
+          <span className={`space-item-split`}>{split}</span>
+        )}
+      </>
     );
   });
 
+  const otherStyles: React.CSSProperties = {};
+
+  const [horizontalSize, verticalSize] = useMemo(
+    () =>
+      ((Array.isArray(size) ? size : [size, size]) as [SizeType, SizeType]).map(
+        (item) => getNumberSize(item)
+      ),
+    [size]
+  );
+
+  otherStyles.rowGap = horizontalSize;
+  otherStyles.columnGap = verticalSize;
+
+  if (wrap) {
+    otherStyles.flexWrap = "wrap";
+  }
+
   return (
-    <div className={cn} style={style} {...otherProps}>
+    <div className={cn} style={{ ...otherStyles, ...style }} {...otherProps}>
       {nodes}
     </div>
   );

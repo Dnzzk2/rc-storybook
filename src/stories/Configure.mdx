@@ -1,6 +1,7 @@
 import { Meta } from "@storybook/blocks";
 
 import Github from "./assets/github.svg";
+import Space from "../components/Space";
 
 export const RightArrow = () => (
   <svg
@@ -32,7 +33,10 @@ export const RightArrow = () => (
 <div className="sb-container">
   <div className="sb-section-title">
     ## 已完成的组件
-    <a>Space</a>
+    <Space direction="horizontal" size="small">
+      <RightArrow />
+      <a href="/?path=/docs/antd-design-布局-space-间距--docs">Space</a>
+    </Space>
   </div>
 </div>
 
@@ -79,7 +83,7 @@ export const RightArrow = () => (
     display: flex;
     flex-direction: column;
   }
-
+  
   .sb-explore-image {
     max-height: 32px;
     align-self: flex-start;

@@ -8,7 +8,13 @@ export type SizeType = "small" | "middle" | "large" | number | undefined;
 
 // 继承原生div的属性
 export interface SpaceProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   *  自定义类名
+   */
   className?: string;
+  /**
+   *  自定义样式
+   */
   style?: CSSProperties;
   direction?: "horizontal" | "vertical";
   size?: SizeType | [SizeType, SizeType];

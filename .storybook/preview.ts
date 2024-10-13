@@ -8,6 +8,7 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    visualTest: { disabled: true }, // 禁用 Visual Test
   },
 };
 

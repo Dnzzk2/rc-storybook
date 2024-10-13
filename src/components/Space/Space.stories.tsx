@@ -8,6 +8,12 @@ const meta = {
   component: Space,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component:
+          "### 类型声明 \nSizeType = small | middle | large | number | undefined",
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {
@@ -71,6 +77,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   name: "基本使用",
+
   render: (args: SpaceProps) => {
     return (
       <Space {...args}>

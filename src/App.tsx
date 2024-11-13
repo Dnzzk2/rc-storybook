@@ -1,19 +1,30 @@
-import "./App.css";
-import Space from "./components/Space";
-import { ConfigProvider } from "./components/Space/ConfigProvider";
+import Watermark from "./components/Watermark";
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <ConfigProvider space={{ size: 20 }}>
-        <Space direction="horizontal" align="end" split={<>123</>}>
-          <div className="box"></div>
-          <div className="box"></div>
-          <div className="box"></div>
-        </Space>
-      </ConfigProvider>
-    </div>
+    <Watermark content={["测试水印"]} gap={[30, 20]}>
+      <div style={{ height: 200 }}>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod
+          deserunt quidem quas in rem ipsam ut nesciunt asperiores dignissimos
+          recusandae minus, eaque, harum exercitationem esse sapiente? Eveniet,
+          id provident!
+        </p>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod
+          deserunt quidem quas in rem ipsam ut nesciunt asperiores dignissimos
+          recusandae minus, eaque, harum exercitationem esse sapiente? Eveniet,
+          id provident!
+        </p>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod
+          deserunt quidem quas in rem ipsam ut nesciunt asperiores dignissimos
+          recusandae minus, eaque, harum exercitationem esse sapiente? Eveniet,
+          id provident!
+        </p>
+      </div>
+    </Watermark>
   );
-}
+};
 
 export default App;
